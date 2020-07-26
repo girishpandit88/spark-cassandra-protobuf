@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.gp.tutorial;
+
+message Student {
+    int32 id = 5;
+    string name = 1;
+    int32 age = 2;
+    Address address = 3;
+    Property properties = 4;
+}
+
+message Address {
+    string street = 1;
+    string state = 2;
+    int32 zipcode = 3;
+}
+
+message Property {
+    map<string, Value> property = 1;
+}
+
+message Value {
+    oneof value {
+        string string_value = 1;
+        double double_value = 2;
+        int64 long_value = 3;
+    }
+}
