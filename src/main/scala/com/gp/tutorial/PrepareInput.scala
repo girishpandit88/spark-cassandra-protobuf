@@ -1,5 +1,7 @@
 package com.gp.tutorial
 
+import java.io.{BufferedWriter, File, FileWriter}
+
 import com.gp.tutorial.student.{Address, Property, Student, Value}
 import javax.xml.bind.DatatypeConverter
 
@@ -32,13 +34,18 @@ object PrepareInput {
     )
 
   def main(args: Array[String]) {
+    val file = new File("input.txt")
+    val bw = new BufferedWriter(new FileWriter(file))
     students
       .foreach { p =>
-        println(
+        bw.write(
           DatatypeConverter
             .printBase64Binary(p.toByteArray)
         )
+        bw.write("\n")
       }
+
+    bw.close()
   }
 
 }
